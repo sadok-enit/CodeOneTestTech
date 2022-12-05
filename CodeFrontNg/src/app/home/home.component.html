@@ -1,0 +1,34 @@
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button routerLink="/AddCategory" type="button" class="btn btn-primary">Ajouter Catégorie </button>
+    <button routerLink="/AddProduct" type="button" class="btn btn-primary">Ajouter Produit </button>
+    <button  routerLink="/Products"  type="button" class="btn btn-primary">lister tout les produits </button>
+   
+  </nav>
+  
+  
+  
+  
+  
+  
+  <h1> Rechercher Produit par Catégorie</h1>
+  <form #f="ngForm" (ngSubmit) = "onChercher(f.value)" >
+    <div class="mb-3">
+      <label for="CatégorieName" class="form-label">Donner le nom du Catégorie</label>
+      <input type="text" class="form-control" name="Keyword"  ngModel >
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  
+  <table class="table table-striped">
+    <tbody>
+      <tr *ngFor="let p of produitsFiltred">
+        <th scope="row">{{p.id}}</th>
+        <th>{{p.name}}</th>
+        <td>{{p.quantite}}</td>
+      </tr>
+    </tbody>
+  </table>

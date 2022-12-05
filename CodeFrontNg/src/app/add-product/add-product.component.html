@@ -1,0 +1,20 @@
+
+
+<form #f1="ngForm" (ngSubmit) = "AddProd(f1.value)">
+    <div class="mb-3">
+      <label for="productName" class="form-label">Entrez le nom du Produit</label>
+      <input type="text" class="form-control"  name="productName" ngModel >
+    </div>
+    <div class="mb-3">
+        <label for="Productquantity" class="form-label">Entrez la quantité du Produit</label>
+        <input type="text" class="form-control" name="Productquantity" ngModel >
+    </div>
+    <div class="mb-3">
+        <label for="categName" class="form-label">Entrez la catégorie du Produit</label>
+        <input type="text" class="form-control" name="categName" ngModel >
+    </div>
+
+      
+
+    <button  type="submit" class="btn btn-primary" >Ajouter</button>
+  </form>

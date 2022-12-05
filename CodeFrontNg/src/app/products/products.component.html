@@ -1,0 +1,153 @@
+
+
+
+<button    type="button" class="btn btn-primary"   (click)="getAllProducts()">lister tout les produits </button>
+
+
+<div class="container">
+  <table class="table"> 
+    <thead>
+      <tr>
+        <th scope="col">category name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor=" let c of categories">
+        <th scope="row">{{c.name}}</th>
+        <table class="table table-nostriped" >
+          <thead>
+            <tr>
+              <th scope="col">id</th>  
+              <th scope="col">name</th>
+            </tr>
+          </thead>
+          <tr *ngFor="let p of c.produits">
+            <th scope="row">{{p.id}}</th>
+            <th scope="row">{{p.name}}</th>
+            <td><a class="btn btn-danger" (click)="onDeleteProduct(p.id)">Delete</a></td>
+          </tr>
+
+        </table>
+
+    </tbody>
+
+  </table>
+
+
+
+</div>
+
+
+
+
+
+  <!--
+    <td><a class="btn btn-danger" (click)="onDeleteProduct(p.id)">Delete</a></td>
+
+     <tr *ngFor=" let c of categories">
+        <th scope="row">{{c.name}}</th>
+        <tr *ngFor="let p of c.produits">
+          <th scope="row">{{p.id}}</th>
+          <th scope="row">{{p.name}}</th>
+        </tr>
+
+
+
+
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Col 1</th>
+                <th>Col 2</th>
+                <th>Col 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>..</td>
+                <td>..</td>
+                <td>..</td>
+            </tr>
+            <tr>
+                <td>..</td>
+                <td>
+
+                    <table class="table table-nostriped">
+                        <tr>
+                            <td>..</td>
+                            <td>..</td>
+                        </tr>
+                        <tr>
+                            <td>..</td>
+                            <td>..</td>
+                        </tr>
+                        <tr>
+                            <td>..</td>
+                            <td>..</td>
+                        </tr>
+                    </table>
+
+                </td>
+                <td>..</td>
+            </tr>
+            <tr>
+                <td>..</td>
+                <td>..</td>
+                <td>..</td>
+            </tr>
+            <tr>
+                <td>..</td>
+                <td>..</td>
+                <td>..</td>
+            </tr>
+            <tr>
+                <td>..</td>
+                <td>..</td>
+                <td>..</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id</th>  
+        <th scope="col">name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor=" let c of categories">
+        <th scope="row">{{c.name}}</th>
+        <div *ngFor="let p of c.produits">
+          <th scope="row">{{p.id}}</th>
+          <th scope="row">{{p.name}}</th>
+        </div>
+
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+  -->

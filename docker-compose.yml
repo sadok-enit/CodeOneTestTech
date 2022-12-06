@@ -1,0 +1,50 @@
+version: '3'
+
+#Define services
+services:
+
+  #PostgreSQL Database for the application
+  CodeOne-postgres:
+    image: "postgres:15.1-alpine"
+    container_name: CodeOne-postgres
+    #Volume mounted for database for the storage
+    volumes:
+      - CodeOne-data:/var/lib/postgresql/15/main
+    ports:
+      - 5432:5432 # Forward the exposed port 5432 on the container to port 5432 on the host machine
+
+    #Environment variable for DB name, user and password
+    environment:
+      - POSTGRES_DB=codeone1
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=myPassword
+
+  #Back-end Spring Boot Application
+  CodeOne-app:
+    #The docker file in scrum-app build the jar and provides the docker image with the following name.
+    build: ./CodeOne-app
+    container_name: CodeOne-app
+
+    #Environment variables for Spring Boot Application.
+    environment:
+      - DB_SERVER=CodeOne-postgres
+      - POSTGRES_DB=codeone1
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=myPassword
+    ports:
+      - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    links:
+      - CodeOne-postgres
+
+  #Fron-end Angular Application
+  CodeFrontNg:
+    build: ./CodeFrontNg
+    container_name: CodeFrontNg
+    ports:
+      - 4200:80
+    links:
+      - CodeOne-app
+
+#Volumes for DB data
+volumes:
+  app-data:

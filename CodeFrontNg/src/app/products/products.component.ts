@@ -31,14 +31,22 @@ export class ProductsComponent implements OnInit{
   onDeleteProduct(id : any)
   {
     this.catalService.DeleteProduct(id).subscribe(data=>{
-      
-      this.produits = data;
-      console.log(this.produits);
     },err=>{
       console.log(err);
     });
     alert("produit supprimé");
     location.reload();
+  }
+  onDeleteCategory(id : any)
+  {
+    this.catalService.DeleteCategory(id).subscribe(data=>{
+      
+    },err=>{
+      console.log(err);
+    });
+    alert("catégorie supprimée");
+    location.reload();
+
   }
 
 }

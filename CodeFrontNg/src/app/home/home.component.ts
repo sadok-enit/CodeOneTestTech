@@ -22,12 +22,9 @@ export class HomeComponent implements OnInit {
     this.catalService.getProductsByCateg(value.Keyword).subscribe(data=>{
 
       this.produitsFiltred = data;
-      console.log(this.produitsFiltred);
     },err=>{
       console.log(err);
     });
-
-    console.log(value);
   }
 
   

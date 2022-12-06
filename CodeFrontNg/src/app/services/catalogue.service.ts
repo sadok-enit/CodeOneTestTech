@@ -33,5 +33,9 @@ export class CatalogueService {
   {
     return this.httpClient.post(this.port+ "/deleteProduit/"+aux,null);
   }
+  public DeleteCategory (aux : any)
+  {
+    return this.httpClient.post(this.port+ "/deleteCategorie/"+aux,null);
+  }
 
 }

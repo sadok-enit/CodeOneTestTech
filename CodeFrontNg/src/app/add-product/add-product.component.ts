@@ -19,7 +19,6 @@ export class AddProductComponent implements OnInit {
   public AddProd(value : any)
   {
     this.catalService.addProduct(value.categName,value.productName,value.Productquantity).subscribe(data =>{
-      console.log(data);
       alert ("Produit ajoutée");
     },err=>{
       console.log(err);
@@ -29,13 +28,3 @@ export class AddProductComponent implements OnInit {
 }
 
 
-/**
-this.catalService.addCategory(value.add).subscribe(data=>{
-
-      console.log(data);
-      alert ("catégorie ajoutée");
-    },err=>{
-      console.log(err);
-    });
-
- **/

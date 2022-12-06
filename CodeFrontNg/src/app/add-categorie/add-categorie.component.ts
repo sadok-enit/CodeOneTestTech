@@ -19,7 +19,6 @@ export class AddCategorieComponent implements OnInit{
   {
     this.catalService.addCategory(value.add).subscribe(data=>{
 
-      console.log(data);
       alert ("catégorie ajoutée");
     },err=>{
       console.log(err);

@@ -12,24 +12,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 
+
 @Entity
-
-
 public class Catégorie {
 
 	public Catégorie() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String name;
 	@OneToMany(mappedBy = "categorie",cascade = CascadeType.ALL )
 	private List<Produit> produits;
-	//, orphanRemoval=true
 	
 	public Catégorie(long id, String name) {
 		super();

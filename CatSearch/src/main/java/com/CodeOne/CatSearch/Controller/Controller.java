@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.CodeOne.CatSearch.Service.ServicesRepository;
 import com.CodeOne.CatSearch.entity.*;
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200") //disable CORS blocking (enable requests from port 4200)
 @RestController
 public class Controller {
 	
@@ -29,26 +29,18 @@ public class Controller {
 	@Autowired
 	ServicesRepository service;
 	
-	@GetMapping("/hello")
-	public String HelloWorld(){
-	return "Hello World";
-	}
-	
-	
-	@PostMapping("/Categorie")
+	@PostMapping("/Categorie") // API for creating category
 	public ResponseEntity<?> createCategoty( @RequestBody Catégorie cat )
-	{
-		//service.ajoutCatégorie(cat);
-		
+	{	
 		return ResponseEntity.ok(service.ajoutCatégorie(cat));
-		//(ResponseEntity<?>) 
 	}
 	
-	@PostMapping("/Produit/{cat}")
+	@PostMapping("/Produit/{cat}")  // API for creating product in a Category 
+	// !! NOTICE : This API ensures that every product is assigned to a category (category name required)
 	public ResponseEntity<?> createProduit( @RequestBody Produit prod ,@PathVariable String cat )
 	{
 
-		Catégorie c = service.GetCatégorieByName(cat) ; 
+		Catégorie c = service.GetCatégorieByName(cat) ; //get object "Category" by its name
 		Produit p = new Produit(prod.getQuantité(), prod.getName(),c);
 		List<Produit> products = c.getProduits();
 		if (products == null)
@@ -59,35 +51,35 @@ public class Controller {
 		c.setProduits(products);
 		return ResponseEntity.ok(service.ajoutProduit(p));
 	}
-	@PostMapping("/FindByCategory/{cat}")
+	@PostMapping("/FindByCategory/{cat}")  // API for product search by category name
 	 public ResponseEntity<?> rechProduitCont( @PathVariable String cat )
 	 {
 		 
 		 return  ResponseEntity.ok(service.rechProduit(cat));
 	 }
 	 
-	 @GetMapping("/Produits")
+	 @GetMapping("/Produits") // API to request all products
 	 public ResponseEntity<?> GetProducts()
 	 {
 		 
 		 return  ResponseEntity.ok(service.allProducts());
 	 }
 	 @GetMapping("/Categories")
-	 public ResponseEntity<?> GetCategories()
+	 public ResponseEntity<?> GetCategories()  // API to request all categories
 	 {
 		 
 		 return  ResponseEntity.ok(service.allcategories());
 	 }
 	 
 	 
-	 @PostMapping("/deleteCategorie/{id}")
+	 @PostMapping("/deleteCategorie/{id}") // API to delete category => deletes all products included 
 	 public ResponseEntity<?> deleteCategorieById( @PathVariable long id )
 	 {
 		 service.deleteCateg( id);
 		 return  ResponseEntity.ok(service.allcategories());
 	 }
 	 
-	 @PostMapping("/deleteProduit/{id}")
+	 @PostMapping("/deleteProduit/{id}") // API to delete product
 	 public ResponseEntity<?> deleteProduitById( @PathVariable long id )
 	 {
 		 service.deleteProd(id);

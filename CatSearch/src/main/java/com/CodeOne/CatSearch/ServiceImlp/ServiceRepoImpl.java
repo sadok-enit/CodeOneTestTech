@@ -3,6 +3,8 @@ package com.CodeOne.CatSearch.ServiceImlp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale.Category;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -50,13 +52,12 @@ ProduitRepo produ;
 		{
 			for (int i=0;i<c.getProduits().size();i++)
 			{
-				if (c.getProduits().get(i).getQuantité()>0)
+				if (c.getProduits().get(i).getQuantité()>0) // retourner les produits dont la quantité est supérieure à 0
 				{
 					res.add(c.getProduits().get(i));
 				}
 			}
 		}
-		//Catégorie c = categ.findByName(cat).get(2);
 		
 		return res;	
 	}
@@ -76,7 +77,19 @@ ProduitRepo produ;
 	
 	public void deleteProd(long id)
 	{
-		produ.deleteById(id);
+		Optional<Produit> optionalP = produ.findById(id);
+		if  (optionalP.isPresent())
+		{
+			Produit p =  optionalP.get();
+			Catégorie c = p.getCategorie();
+			produ.deleteById(id);
+			if (c.getProduits().size()==0)
+			{
+				deleteCateg(c.getId());
+			}
+		}
+		
+		
 	}
 	public void deleteCateg(long id)
 	{

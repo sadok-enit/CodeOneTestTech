@@ -21,7 +21,7 @@ services:
 
   #Back-end Spring Boot Application
   codeone-app:
-    #The docker file in scrum-app build the jar and provides the docker image with the following name.
+    #The docker file in CatSearch build the jar and provides the docker image with the following name.
     build: ./CatSearch
     container_name: codeone-app
 

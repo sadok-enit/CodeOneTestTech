@@ -22,7 +22,6 @@ public class Produit {
 	private String name;
 	@ManyToOne
 	private Catégorie categorie;
-	//(cascade = CascadeType.REMOVE)
 	
 	
 

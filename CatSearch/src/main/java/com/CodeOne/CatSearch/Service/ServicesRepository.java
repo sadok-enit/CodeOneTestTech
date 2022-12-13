@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 
-@JavaBean
 @Service
 public interface ServicesRepository {
 	public Catégorie ajoutCatégorie (Catégorie cat);

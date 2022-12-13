@@ -21,7 +21,6 @@ public class Produit {
 	private int quantite;
 	private String name;
 	@ManyToOne
-	@JsonIgnore
 	private Catégorie categorie;
 	//(cascade = CascadeType.REMOVE)
 	
